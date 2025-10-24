@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhereAmI? - Location Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+</head>
+<body class="min-h-screen bg-gray-100">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">WhereAmI? 🌍</h1>
+                <p class="text-xl text-gray-600">Discover your current location with just one click</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <div class="flex justify-center mb-6">
+                    <i data-feather="map-pin" class="text-blue-500 w-12 h-12"></i>
+                </div>
+                <button id="getLocationBtn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-200 flex items-center justify-center">
+                    <i data-feather="navigation" class="mr-2"></i> Find My Location
+                </button>
+                <div id="loading" class="hidden mt-4 text-center">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+            </div>
+
+            <div id="locationResult" class="hidden bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Your Location Details</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <i data-feather="map" class="text-blue-500 mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-500">Coordinates</p>
+                            <p id="coordinates" class="font-medium"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="compass" class="text-blue-500 mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-500">Accuracy</p>
+                            <p id="accuracy" class="font-medium"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="globe" class="text-blue-500 mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-500">Address</p>
+                            <p id="address" class="font-medium"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="mapContainer" class="mt-6 rounded-lg overflow-hidden hidden">
+                    <div id="map" class="h-64 w-full"></div>
+                </div>
+            </div>
+
+            <div id="errorMessage" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 mt-4">
+                <div class="flex items-center">
+                    <i data-feather="alert-circle" class="mr-2"></i>
+                    <span id="errorText"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+        
+        // Vanta.js background effect
+        VANTA.NET({
+            el: "body",
+            color: 0x3b82f6,
+            backgroundColor: 0xf3f4f6,
+            points: 12,
+            maxDistance: 18,
+            spacing: 16
+        });
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+</body>
+</html>
