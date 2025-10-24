@@ -1,0 +1,31 @@
+/* Custom styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+#getLocationBtn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+#map {
+    filter: grayscale(30%) contrast(110%);
+}
+
+/* Animation for the location result */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#locationResult {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
